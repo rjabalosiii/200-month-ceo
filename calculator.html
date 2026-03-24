@@ -468,14 +468,23 @@
       <div class="breakdown" id="breakdown"></div>
     </div>
 
+    <div class="cta-section" id="cta-service" style="display:none; background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(5, 150, 105, 0.05)); border: 1px solid rgba(16, 185, 129, 0.25);">
+      <h2 style="color: #34d399;">Don't want to build it yourself?</h2>
+      <p id="cta-service-text">We'll build and deploy your custom AI agent team in 5 days. $2,500 flat fee.</p>
+      <a href="services.html" style="display:inline-block;padding:16px 40px;background:linear-gradient(135deg,#10b981,#059669);color:#fff;font-size:18px;font-weight:800;border-radius:12px;text-decoration:none;box-shadow:0 4px 24px rgba(16,185,129,0.3);margin:12px 0;">See the Setup Service</a>
+      <p class="trust-line">Free 30-min consultation. 5-day delivery. Money-back guarantee.</p>
+    </div>
+
     <div class="cta-section">
-      <h2>Want to see how it's built?</h2>
+      <h2>Want to build it yourself?</h2>
       <p>I run 16 AI agents for $207/month. Weekly breakdowns of the architecture, costs, and code.</p>
-      <form class="subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/the200dollarceo" method="post" target="popupwindow">
-        <input type="email" name="email" placeholder="your@email.com" required>
-        <button type="submit">Get the build log</button>
-      </form>
-      <p class="trust-line">Free. Weekly. Unsubscribe anytime.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:12px 0;">
+        <a href="toolkit.html" style="display:inline-block;padding:12px 28px;background:linear-gradient(135deg,#f59e0b,#d97706);color:#000;font-weight:700;border-radius:10px;text-decoration:none;">DIY Toolkit — $19</a>
+        <form class="subscribe-form" style="margin:0;" action="https://buttondown.com/api/emails/embed-subscribe/the200dollarceo" method="post" target="popupwindow">
+          <input type="email" name="email" placeholder="your@email.com" required style="padding:12px 16px;">
+          <button type="submit" style="padding:12px 20px;">Free Build Log</button>
+        </form>
+      </div>
     </div>
 
     <div class="data-source">
@@ -606,6 +615,17 @@
 
       document.getElementById('savings-amount').textContent = '$' + savings.toLocaleString();
       document.getElementById('savings-percent').textContent = percent + '% less';
+
+      // Show dynamic service CTA with personalized ROI
+      var ctaService = document.getElementById('cta-service');
+      var ctaText = document.getElementById('cta-service-text');
+      if (savings > 0) {
+        ctaService.style.display = 'block';
+        var paybackDays = Math.ceil(2500 / (savings / 30));
+        ctaText.textContent = 'You could save $' + savings.toLocaleString() + '/month. At $2,500 setup cost, it pays for itself in ' + paybackDays + ' days. We build your AI team in 5.';
+      } else {
+        ctaService.style.display = 'none';
+      }
     }
   </script>
 </body>
