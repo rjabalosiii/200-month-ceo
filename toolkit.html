@@ -250,24 +250,20 @@
       .compare { grid-template-columns: 1fr; }
     }
   </style>
-  <style>
-    .nav { display: flex; justify-content: center; gap: 24px; padding: 16px; border-bottom: 1px solid #1a1a1a; }
-    .nav a { color: #9ca3af; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
-    .nav a:hover, .nav a.active { color: #fff; }
-  </style>
 </head>
 <body>
-  <nav class="nav">
-    <a href="index.html">Newsletter</a>
-    <a href="toolkit.html" class="active">Toolkit — $19</a>
-    <a href="calculator.html">ROI Calculator</a>
+  <nav style="display:flex;justify-content:center;gap:24px;padding:16px 24px;border-bottom:1px solid #1a1a1a;font-size:14px;">
+    <a href="index.html" style="color:#6b7280;text-decoration:none;">Newsletter</a>
+    <a href="toolkit.html" style="color:#fff;text-decoration:none;font-weight:600;">Toolkit ($19)</a>
+    <a href="services.html" style="color:#34d399;text-decoration:none;font-weight:600;">Setup Service ($2,500)</a>
+    <a href="calculator.html" style="color:#6b7280;text-decoration:none;">ROI Calculator</a>
   </nav>
   <div class="container">
     <div class="hero">
       <div class="price-badge">$19 ONE-TIME</div>
       <h1>The <em>AI Agent Toolkit</em></h1>
       <p class="hero-sub">The exact templates, configs, and architecture from a 16-agent production system running on $207/month. Skip 60 days of trial and error.</p>
-      <a href="mailto:rj@openclaw.com?subject=AI%20Agent%20Toolkit%20Purchase%20%28%2419%29&body=I%27d%20like%20to%20purchase%20the%20AI%20Agent%20Toolkit%20for%20%2419.%20Please%20send%20me%20payment%20details." class="buy-btn" id="buy-link">Get the Toolkit — $19</a>
+      <a href="#buy" class="buy-btn" id="buy-link">Get the Toolkit — $19</a>
       <p class="buy-note">Instant download. No subscription. Yours forever.</p>
     </div>
 
@@ -427,7 +423,7 @@
     <div class="bottom-cta" id="buy">
       <h2>Skip 60 days of mistakes. Start building today.</h2>
       <p>16 agent templates. Budget routing. Task delegation. MCP bridge. All for less than one hour of Claude API costs.</p>
-      <a href="mailto:rj@openclaw.com?subject=AI%20Agent%20Toolkit%20Purchase%20%28%2419%29&body=I%27d%20like%20to%20purchase%20the%20AI%20Agent%20Toolkit%20for%20%2419.%20Please%20send%20me%20payment%20details." class="buy-btn" id="buy-link-bottom">Get the Toolkit — $19</a>
+      <a href="#buy" class="buy-btn" id="buy-link-bottom">Get the Toolkit — $19</a>
       <p class="buy-note">Instant download. 30-day money-back guarantee.</p>
     </div>
 
