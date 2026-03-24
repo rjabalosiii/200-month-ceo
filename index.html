@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The $200/Month CEO — Running a Startup with 16 AI Agents</title>
+  <meta name="description" content="A solo founder in the Philippines runs his entire startup with 16 AI agents on $207/month. Weekly technical breakdowns of what works, what breaks, and what it actually costs.">
+  <meta property="og:title" content="The $200/Month CEO">
+  <meta property="og:description" content="16 AI agents. $207/month. Zero employees. Weekly dispatches from the frontier of AI-native business.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="The $200/Month CEO">
+  <meta name="twitter:description" content="16 AI agents. $207/month. Zero employees. Weekly dispatches from the frontier of AI-native business.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 60px 24px;
+    }
+
+    .hero {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(59, 130, 246, 0.15);
+      color: #60a5fa;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+      border: 1px solid rgba(59, 130, 246, 0.25);
+    }
+
+    h1 {
+      font-size: 42px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #60a5fa, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 19px;
+      color: #9ca3af;
+      max-width: 520px;
+      margin: 0 auto 32px;
+      line-height: 1.5;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 8px;
+      max-width: 440px;
+      margin: 0 auto 12px;
+    }
+
+    .subscribe-form input {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .subscribe-form input:focus {
+      border-color: #60a5fa;
+    }
+
+    .subscribe-form button {
+      padding: 14px 28px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #3b82f6, #6366f1);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .subscribe-form button:hover {
+      opacity: 0.9;
+    }
+
+    .trust-line {
+      font-size: 13px;
+      color: #6b7280;
+      text-align: center;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin: 48px 0;
+      padding: 32px 24px;
+      background: #111;
+      border-radius: 16px;
+      border: 1px solid #222;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+
+    .what-you-get {
+      margin: 48px 0;
+    }
+
+    .what-you-get h2 {
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 24px;
+      font-weight: 700;
+    }
+
+    .issue-preview {
+      padding: 20px;
+      background: #111;
+      border-radius: 12px;
+      border: 1px solid #222;
+      margin-bottom: 12px;
+      transition: border-color 0.2s;
+    }
+
+    .issue-preview:hover {
+      border-color: #333;
+    }
+
+    .issue-preview a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .issue-preview a:hover {
+      color: #60a5fa;
+    }
+
+    .issue-preview p {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    .issue-tag {
+      display: inline-block;
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 4px;
+      background: rgba(99, 102, 241, 0.15);
+      color: #818cf8;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+
+    .about {
+      margin: 48px 0;
+      padding: 32px 24px;
+      background: #111;
+      border-radius: 16px;
+      border: 1px solid #222;
+    }
+
+    .about h2 {
+      font-size: 20px;
+      color: #fff;
+      margin-bottom: 12px;
+    }
+
+    .about p {
+      color: #9ca3af;
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .bottom-cta {
+      text-align: center;
+      margin: 48px 0 24px;
+      padding: 32px 24px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(99, 102, 241, 0.1));
+      border-radius: 16px;
+      border: 1px solid rgba(59, 130, 246, 0.2);
+    }
+
+    .bottom-cta h2 {
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .bottom-cta p {
+      color: #9ca3af;
+      margin-bottom: 20px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #4b5563;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 32px; }
+      .subscribe-form { flex-direction: column; }
+      .stats { grid-template-columns: 1fr; gap: 12px; }
+      .container { padding: 40px 16px; }
+    }
+  </style>
+  </style>
+  <style>
+    .nav { display: flex; justify-content: center; gap: 24px; padding: 16px; border-bottom: 1px solid #1a1a1a; }
+    .nav a { color: #9ca3af; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav a:hover, .nav a.active { color: #fff; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html" class="active">Newsletter</a>
+    <a href="toolkit.html">Toolkit — $19</a>
+    <a href="calculator.html">ROI Calculator</a>
+  </nav>
+  <div class="container">
+    <div class="hero">
+      <div class="badge">WEEKLY TECHNICAL NEWSLETTER</div>
+      <h1>The <span>$200/Month</span> CEO</h1>
+      <p class="subtitle">A solo founder in the Philippines runs his entire startup with 16 AI agents on $207/month. Weekly breakdowns of the architecture, costs, and lessons.</p>
+
+      <form class="subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/the200dollarceo" method="post" target="popupwindow">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+      <p class="trust-line">Free. Every 3 days. Unsubscribe anytime.</p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">16</div>
+        <div class="stat-label">AI Agents Running</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">$207</div>
+        <div class="stat-label">Monthly Cost</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">60+</div>
+        <div class="stat-label">Days in Production</div>
+      </div>
+    </div>
+
+    <div class="what-you-get">
+      <h2>Recent Issues</h2>
+
+      <div class="issue-preview">
+        <div>
+          <span class="issue-tag">Architecture</span>
+          <span class="issue-tag">MCP</span>
+        </div>
+        <a href="https://buttondown.com/the200dollarceo/archive/">The MCP Tool Bridge: How We Gave AI Agent Subprocesses Access to 50+ Tools</a>
+        <p>Building an HTTP bridge disguised as MCP to solve SQLite contention in a 16-agent system.</p>
+      </div>
+
+      <div class="issue-preview">
+        <div>
+          <span class="issue-tag">Cost</span>
+          <span class="issue-tag">LLM Routing</span>
+        </div>
+        <a href="https://buttondown.com/the200dollarceo/archive/">How We Run 16 AI Agents on $200/Month Without Going Broke</a>
+        <p>Local-first LLM routing, per-agent tool limits, and automatic budget guardrails.</p>
+      </div>
+
+      <div class="issue-preview">
+        <div>
+          <span class="issue-tag">Multi-Agent</span>
+          <span class="issue-tag">Coordination</span>
+        </div>
+        <a href="https://buttondown.com/the200dollarceo/archive/">How 16 AI Agents Assign Work to Each Other Without a Human</a>
+        <p>Tasks, not messages. Dependency tracking, quality gates, and autonomous delegation.</p>
+      </div>
+    </div>
+
+    <div class="issue-preview" style="border-color: #34d399; background: rgba(16, 185, 129, 0.05);">
+      <div>
+        <span class="issue-tag" style="background: rgba(16, 185, 129, 0.15); color: #34d399;">Free Tool</span>
+      </div>
+      <a href="calculator.html" style="color: #34d399;">AI Agent ROI Calculator — How much could you save?</a>
+      <p>Select the roles you need. See what they cost as humans vs AI agents. Based on real production data.</p>
+    </div>
+
+    <div class="about">
+      <h2>Who writes this?</h2>
+      <p>I'm RJ, a founder in Cebu City, Philippines. I run multiple businesses — pharma distribution, healthcare tech, vertical SaaS — with AI agents handling operations, research, marketing, and sales.</p>
+      <p>This newsletter documents the real infrastructure. Not theory. Not hype. The actual TypeScript, the actual costs, the actual failures. Every issue includes code you can steal.</p>
+    </div>
+
+    <div class="bottom-cta">
+      <h2>Join the build log</h2>
+      <p>New issue every 3 days. Technical, honest, zero fluff.</p>
+      <form class="subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/the200dollarceo" method="post" target="popupwindow">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+
+    <footer>
+      Built by AI agents, reviewed by a human. &copy; 2026
+    </footer>
+  </div>
+</body>
+</html>

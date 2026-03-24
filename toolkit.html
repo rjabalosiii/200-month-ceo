@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The AI Agent Toolkit — Build Your Own AI Operating Team for $19</title>
+  <meta name="description" content="The exact templates, configs, and architecture from a 16-agent production system running on $207/month. Soul files, budget routing, task delegation, and MCP bridge setup.">
+  <meta property="og:title" content="The AI Agent Toolkit — $19">
+  <meta property="og:description" content="Build a 16-agent AI team for $207/month. The exact templates and configs from a production system.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.7;
+    }
+    .container { max-width: 680px; margin: 0 auto; padding: 48px 24px; }
+
+    /* Hero */
+    .hero { text-align: center; margin-bottom: 48px; }
+    .price-badge {
+      display: inline-block;
+      background: rgba(251, 191, 36, 0.15);
+      color: #fbbf24;
+      padding: 6px 20px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      border: 1px solid rgba(251, 191, 36, 0.3);
+    }
+    h1 {
+      font-size: 40px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      letter-spacing: -1px;
+    }
+    h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 18px;
+      color: #9ca3af;
+      max-width: 560px;
+      margin: 0 auto 28px;
+    }
+
+    /* Buy button */
+    .buy-btn {
+      display: inline-block;
+      padding: 16px 40px;
+      background: linear-gradient(135deg, #f59e0b, #d97706);
+      color: #000;
+      font-size: 18px;
+      font-weight: 800;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 0 4px 24px rgba(245, 158, 11, 0.3);
+    }
+    .buy-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(245, 158, 11, 0.4);
+    }
+    .buy-note {
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 12px;
+    }
+
+    /* What's inside */
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+    .section { margin-bottom: 48px; }
+
+    .item {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 12px;
+    }
+    .item-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .item-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+    .item-icon.template { background: rgba(59, 130, 246, 0.15); }
+    .item-icon.config { background: rgba(16, 185, 129, 0.15); }
+    .item-icon.guide { background: rgba(168, 85, 247, 0.15); }
+    .item-icon.bonus { background: rgba(251, 191, 36, 0.15); }
+    .item-title {
+      font-weight: 700;
+      color: #fff;
+      font-size: 16px;
+    }
+    .item-desc {
+      font-size: 14px;
+      color: #9ca3af;
+      padding-left: 48px;
+    }
+    .item-file {
+      display: inline-block;
+      font-size: 12px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      color: #6b7280;
+      background: #1a1a1a;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-top: 6px;
+      margin-left: 48px;
+    }
+
+    /* Social proof */
+    .proof {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 16px;
+      padding: 28px;
+      margin-bottom: 48px;
+      text-align: center;
+    }
+    .proof-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .proof-stat-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+    }
+    .proof-stat-label {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 2px;
+    }
+
+    /* Comparison */
+    .compare {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .compare-col {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .compare-col.alt {
+      border-color: rgba(251, 191, 36, 0.3);
+      background: rgba(251, 191, 36, 0.03);
+    }
+    .compare-title {
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+    .compare-list {
+      list-style: none;
+      font-size: 14px;
+    }
+    .compare-list li {
+      padding: 6px 0;
+      color: #9ca3af;
+    }
+    .compare-list li::before {
+      margin-right: 8px;
+    }
+    .compare-col:not(.alt) .compare-list li::before {
+      content: "\2717";
+      color: #ef4444;
+    }
+    .compare-col.alt .compare-list li::before {
+      content: "\2713";
+      color: #34d399;
+    }
+
+    /* FAQ */
+    .faq-item {
+      border-bottom: 1px solid #1a1a1a;
+      padding: 16px 0;
+    }
+    .faq-q {
+      font-weight: 700;
+      color: #fff;
+      font-size: 15px;
+      margin-bottom: 6px;
+    }
+    .faq-a {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    /* Bottom CTA */
+    .bottom-cta {
+      text-align: center;
+      margin: 48px 0 32px;
+      padding: 40px 24px;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.08), rgba(245, 158, 11, 0.05));
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      border-radius: 16px;
+    }
+    .bottom-cta h2 { margin-bottom: 8px; }
+    .bottom-cta p {
+      color: #9ca3af;
+      margin-bottom: 24px;
+      font-size: 15px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: #4b5563;
+      font-size: 13px;
+    }
+    footer a { color: #60a5fa; text-decoration: none; }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 30px; }
+      .container { padding: 32px 16px; }
+      .proof-stats { grid-template-columns: 1fr; gap: 8px; }
+      .compare { grid-template-columns: 1fr; }
+    }
+  </style>
+  <style>
+    .nav { display: flex; justify-content: center; gap: 24px; padding: 16px; border-bottom: 1px solid #1a1a1a; }
+    .nav a { color: #9ca3af; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav a:hover, .nav a.active { color: #fff; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html">Newsletter</a>
+    <a href="toolkit.html" class="active">Toolkit — $19</a>
+    <a href="calculator.html">ROI Calculator</a>
+  </nav>
+  <div class="container">
+    <div class="hero">
+      <div class="price-badge">$19 ONE-TIME</div>
+      <h1>The <em>AI Agent Toolkit</em></h1>
+      <p class="hero-sub">The exact templates, configs, and architecture from a 16-agent production system running on $207/month. Skip 60 days of trial and error.</p>
+      <a href="mailto:rj@openclaw.com?subject=AI%20Agent%20Toolkit%20Purchase%20%28%2419%29&body=I%27d%20like%20to%20purchase%20the%20AI%20Agent%20Toolkit%20for%20%2419.%20Please%20send%20me%20payment%20details." class="buy-btn" id="buy-link">Get the Toolkit — $19</a>
+      <p class="buy-note">Instant download. No subscription. Yours forever.</p>
+    </div>
+
+    <div class="proof">
+      <h2>Built from a real production system</h2>
+      <div class="proof-stats">
+        <div>
+          <div class="proof-stat-value">16</div>
+          <div class="proof-stat-label">Agents in production</div>
+        </div>
+        <div>
+          <div class="proof-stat-value">60+</div>
+          <div class="proof-stat-label">Days running</div>
+        </div>
+        <div>
+          <div class="proof-stat-value">$207</div>
+          <div class="proof-stat-label">Monthly cost</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>What's inside</h2>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-icon template">T</div>
+          <div class="item-title">Agent Soul Templates (16 roles)</div>
+        </div>
+        <div class="item-desc">Complete personality + instruction files for 16 agent roles: CEO/CoS, Research Analyst, Sales Intel, Content Strategist, Marketing, Finance, Developer, and 9 more. Each defines role, tools, decision authority, and cooperation protocols.</div>
+        <div class="item-file">souls/*.md (16 files)</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-icon config">C</div>
+          <div class="item-title">Budget Routing Configuration</div>
+        </div>
+        <div class="item-desc">The 3-tier LLM routing setup: local classifier (qwen 3b) → flat-rate Claude Max → overflow API. Includes the exact classification prompt, routing logic, and budget guardrail thresholds that keep 16 agents running under $210/month.</div>
+        <div class="item-file">config/budget-routing.ts + config/llm-tiers.json</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-icon config">C</div>
+          <div class="item-title">Per-Agent Tool Limit Config</div>
+        </div>
+        <div class="item-desc">Tool allocation matrices for each agent role. Why 7-10 tools per agent cuts token usage 40%. Includes the tool registry pattern and how to add new tools without breaking budgets.</div>
+        <div class="item-file">config/tool-limits.json + docs/tool-allocation-guide.md</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-icon guide">G</div>
+          <div class="item-title">MCP-over-HTTP Bridge Setup</div>
+        </div>
+        <div class="item-desc">How we solved multi-process tool access: an HTTP bridge disguised as MCP that eliminated SQLite BUSY errors and cut memory per subprocess from 350MB to 150MB. Full implementation guide with the tools-server.ts shim.</div>
+        <div class="item-file">docs/mcp-bridge-guide.md + src/tools-server.ts</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-icon guide">G</div>
+          <div class="item-title">Inter-Agent Task Delegation Schema</div>
+        </div>
+        <div class="item-desc">The task-based communication system that replaced message passing. TypeScript interfaces, dependency tracking, priority queuing, automatic retry with backoff. How agents assign work to each other without a human dispatcher.</div>
+        <div class="item-file">src/task-schema.ts + docs/delegation-guide.md</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-icon guide">G</div>
+          <div class="item-title">Cron + Schedule Architecture</div>
+        </div>
+        <div class="item-desc">How 16 agents run on a schedule without stepping on each other. Cron job templates, concurrency limits, and the "goal work" pattern that keeps agents productive between check-ins.</div>
+        <div class="item-file">config/cron-schedule.ts + docs/scheduling-guide.md</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-icon bonus">B</div>
+          <div class="item-title">60-Day Deployment Playbook</div>
+        </div>
+        <div class="item-desc">The timeline of what we built, what broke, and what we'd do differently. Week-by-week lessons from taking a multi-agent system from chaos to revenue. Start with 2-3 agents, not 16.</div>
+        <div class="item-file">docs/deployment-playbook.md</div>
+      </div>
+
+      <div class="item">
+        <div class="item-header">
+          <div class="item-icon bonus">B</div>
+          <div class="item-title">Cost Tracking Dashboard Template</div>
+        </div>
+        <div class="item-desc">The P&L tracking system that monitors per-agent costs, revenue attribution, and budget alerts. Know exactly which agents are earning their keep and which are wasting money.</div>
+        <div class="item-file">templates/agent-pnl-tracker.md</div>
+      </div>
+    </div>
+
+    <div class="compare">
+      <div class="compare-col">
+        <div class="compare-title">Without the toolkit</div>
+        <ul class="compare-list">
+          <li>2-3 months of trial and error</li>
+          <li>$500+ in wasted API costs</li>
+          <li>Agents fighting over DB access</li>
+          <li>No budget controls (surprise bills)</li>
+          <li>Guessing at tool allocation</li>
+          <li>Message-passing spaghetti</li>
+        </ul>
+      </div>
+      <div class="compare-col alt">
+        <div class="compare-title">With the toolkit</div>
+        <ul class="compare-list">
+          <li>Production-ready templates day 1</li>
+          <li>Budget routing that caps costs</li>
+          <li>MCP bridge eliminates DB errors</li>
+          <li>Per-agent tool limits (40% savings)</li>
+          <li>Tested allocation matrices</li>
+          <li>Task-based delegation that scales</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>Common questions</h2>
+
+      <div class="faq-item">
+        <div class="faq-q">What tech stack does this assume?</div>
+        <div class="faq-a">Built on Bun (TypeScript) + SQLite + Ollama for local LLMs + Claude for cloud. The patterns and templates work with any LLM provider — the architecture is what matters, not the specific APIs.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Do I need a Mac?</div>
+        <div class="faq-a">We run on Mac Mini M4 Pro, but the system works on any machine that can run Ollama (Mac, Linux, Windows with WSL). The local LLM routing is optional — you can start cloud-only and add local later.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Is this a framework or a tutorial?</div>
+        <div class="faq-a">Neither. It's the actual config files, templates, and architecture docs from a production system. You'll adapt them to your use case, not install a package. Think "starter kit" not "framework."</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">How is this different from CrewAI / AutoGen / LangGraph?</div>
+        <div class="faq-a">Those are frameworks. This is the architecture that replaced them. We tried CrewAI — too much abstraction, not enough control over costs. This toolkit gives you the patterns for building your own lightweight system without framework lock-in.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">What if I only want 2-3 agents?</div>
+        <div class="faq-a">Start there. The playbook explicitly recommends 2-3 agents first. The soul templates, budget routing, and tool limits all work at any scale. You don't need 16 agents to benefit from the architecture.</div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">Can I get a refund?</div>
+        <div class="faq-a">Yes. If the toolkit doesn't help you build a working multi-agent system, email me within 30 days for a full refund. No questions asked.</div>
+      </div>
+    </div>
+
+    <div class="bottom-cta" id="buy">
+      <h2>Skip 60 days of mistakes. Start building today.</h2>
+      <p>16 agent templates. Budget routing. Task delegation. MCP bridge. All for less than one hour of Claude API costs.</p>
+      <a href="mailto:rj@openclaw.com?subject=AI%20Agent%20Toolkit%20Purchase%20%28%2419%29&body=I%27d%20like%20to%20purchase%20the%20AI%20Agent%20Toolkit%20for%20%2419.%20Please%20send%20me%20payment%20details." class="buy-btn" id="buy-link-bottom">Get the Toolkit — $19</a>
+      <p class="buy-note">Instant download. 30-day money-back guarantee.</p>
+    </div>
+
+    <footer>
+      From <a href="https://buttondown.com/the200dollarceo">The $200/Month CEO</a> — weekly dispatches from a 16-agent production system.
+    </footer>
+  </div>
+</body>
+</html>

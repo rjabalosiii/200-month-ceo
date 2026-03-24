@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Agent ROI Calculator — How Much Could You Save?</title>
+  <meta name="description" content="Calculate how much you'd save replacing traditional hires with AI agents. Based on real data from a 16-agent production system running on $207/month.">
+  <meta property="og:title" content="AI Agent ROI Calculator">
+  <meta property="og:description" content="Find out how much you'd save running AI agents instead of hiring. Based on real production data.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="AI Agent ROI Calculator">
+  <meta name="twitter:description" content="Calculate your savings: AI agents vs traditional hires. Real data from 16 agents in production.">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0a0a0a;
+      color: #e0e0e0;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 48px 24px;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+    }
+
+    h1 {
+      font-size: 36px;
+      font-weight: 800;
+      line-height: 1.1;
+      color: #fff;
+      margin-bottom: 12px;
+      letter-spacing: -0.5px;
+    }
+
+    h1 span {
+      background: linear-gradient(135deg, #34d399, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      font-size: 17px;
+      color: #9ca3af;
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    .section {
+      margin-bottom: 32px;
+    }
+
+    .section-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .role-card {
+      background: #111;
+      border: 2px solid #222;
+      border-radius: 12px;
+      padding: 16px;
+      cursor: pointer;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .role-card:hover {
+      border-color: #333;
+    }
+
+    .role-card.selected {
+      border-color: #34d399;
+      background: rgba(16, 185, 129, 0.08);
+    }
+
+    .role-name {
+      font-weight: 700;
+      color: #fff;
+      font-size: 15px;
+      margin-bottom: 2px;
+    }
+
+    .role-cost {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .role-ai-cost {
+      font-size: 12px;
+      color: #34d399;
+      margin-top: 4px;
+    }
+
+    .role-card.selected .role-ai-cost {
+      opacity: 1;
+    }
+
+    .role-card:not(.selected) .role-ai-cost {
+      opacity: 0.5;
+    }
+
+    .slider-section {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 32px;
+    }
+
+    .slider-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .slider-label span {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    .slider-value {
+      font-size: 18px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    input[type="range"] {
+      -webkit-appearance: none;
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #333;
+      outline: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #34d399;
+      cursor: pointer;
+      border: 3px solid #0a0a0a;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #34d399;
+      cursor: pointer;
+      border: 3px solid #0a0a0a;
+    }
+
+    .results {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(59, 130, 246, 0.08));
+      border: 1px solid rgba(16, 185, 129, 0.2);
+      border-radius: 16px;
+      padding: 32px 24px;
+      margin-bottom: 32px;
+      display: none;
+    }
+
+    .results.visible {
+      display: block;
+    }
+
+    .results-title {
+      font-size: 16px;
+      color: #9ca3af;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .comparison {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .cost-block {
+      text-align: center;
+    }
+
+    .cost-label {
+      font-size: 13px;
+      color: #6b7280;
+      margin-bottom: 4px;
+    }
+
+    .cost-amount {
+      font-size: 32px;
+      font-weight: 800;
+    }
+
+    .cost-amount.human {
+      color: #ef4444;
+    }
+
+    .cost-amount.ai {
+      color: #34d399;
+    }
+
+    .cost-period {
+      font-size: 12px;
+      color: #6b7280;
+    }
+
+    .vs {
+      font-size: 14px;
+      color: #4b5563;
+      font-weight: 700;
+    }
+
+    .savings-bar {
+      background: #1a1a1a;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .savings-amount {
+      font-size: 42px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #34d399, #60a5fa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 4px;
+    }
+
+    .savings-label {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+
+    .savings-percent {
+      display: inline-block;
+      background: rgba(16, 185, 129, 0.15);
+      color: #34d399;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .breakdown {
+      margin-top: 24px;
+    }
+
+    .breakdown-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #1a1a1a;
+      font-size: 14px;
+    }
+
+    .breakdown-role {
+      color: #e0e0e0;
+    }
+
+    .breakdown-costs {
+      display: flex;
+      gap: 24px;
+    }
+
+    .breakdown-human {
+      color: #ef4444;
+      text-decoration: line-through;
+      opacity: 0.6;
+    }
+
+    .breakdown-ai {
+      color: #34d399;
+      font-weight: 600;
+    }
+
+    .cta-section {
+      text-align: center;
+      margin: 40px 0 24px;
+      padding: 32px 24px;
+      background: #111;
+      border-radius: 16px;
+      border: 1px solid #222;
+    }
+
+    .cta-section h2 {
+      font-size: 22px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .cta-section p {
+      color: #9ca3af;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+
+    .subscribe-form {
+      display: flex;
+      gap: 8px;
+      max-width: 440px;
+      margin: 0 auto 12px;
+    }
+
+    .subscribe-form input {
+      flex: 1;
+      padding: 14px 18px;
+      border-radius: 10px;
+      border: 1px solid #333;
+      background: #1a1a1a;
+      color: #fff;
+      font-size: 16px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .subscribe-form input:focus {
+      border-color: #34d399;
+    }
+
+    .subscribe-form button {
+      padding: 14px 24px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #10b981, #3b82f6);
+      color: #fff;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+
+    .subscribe-form button:hover {
+      opacity: 0.9;
+    }
+
+    .trust-line {
+      font-size: 13px;
+      color: #6b7280;
+    }
+
+    .data-source {
+      text-align: center;
+      padding: 20px;
+      color: #4b5563;
+      font-size: 13px;
+    }
+
+    .data-source a {
+      color: #60a5fa;
+      text-decoration: none;
+    }
+
+    .data-source a:hover {
+      text-decoration: underline;
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px 20px;
+      color: #4b5563;
+      font-size: 15px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 28px; }
+      .roles-grid { grid-template-columns: 1fr; }
+      .comparison { grid-template-columns: 1fr; gap: 8px; }
+      .vs { display: none; }
+      .subscribe-form { flex-direction: column; }
+      .container { padding: 32px 16px; }
+      .savings-amount { font-size: 32px; }
+      .cost-amount { font-size: 24px; }
+    }
+  </style>
+  <style>
+    .nav { display: flex; justify-content: center; gap: 24px; padding: 16px; border-bottom: 1px solid #1a1a1a; }
+    .nav a { color: #9ca3af; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; }
+    .nav a:hover, .nav a.active { color: #fff; }
+  </style>
+</head>
+<body>
+  <nav class="nav">
+    <a href="index.html">Newsletter</a>
+    <a href="toolkit.html">Toolkit — $19</a>
+    <a href="calculator.html" class="active">ROI Calculator</a>
+  </nav>
+  <div class="container">
+    <div class="header">
+      <div class="badge">FREE TOOL</div>
+      <h1>AI Agent <span>ROI Calculator</span></h1>
+      <p class="subtitle">Select the roles you need. See what they cost as humans vs AI agents. Based on real data from a 16-agent production system.</p>
+    </div>
+
+    <div class="section">
+      <div class="section-title">Select the roles you need</div>
+      <div class="roles-grid" id="roles-grid"></div>
+    </div>
+
+    <div class="slider-section">
+      <div class="slider-label">
+        <span>Hours per week you'd need from each role</span>
+        <span class="slider-value" id="hours-value">20 hrs/wk</span>
+      </div>
+      <input type="range" id="hours-slider" min="5" max="40" value="20" step="5">
+    </div>
+
+    <div class="empty-state" id="empty-state">
+      Select at least one role above to see your savings
+    </div>
+
+    <div class="results" id="results">
+      <div class="results-title">Your estimated monthly comparison</div>
+
+      <div class="comparison">
+        <div class="cost-block">
+          <div class="cost-label">Traditional Hires</div>
+          <div class="cost-amount human" id="human-cost">$0</div>
+          <div class="cost-period">/month</div>
+        </div>
+        <div class="vs">vs</div>
+        <div class="cost-block">
+          <div class="cost-label">AI Agents</div>
+          <div class="cost-amount ai" id="ai-cost">$0</div>
+          <div class="cost-period">/month</div>
+        </div>
+      </div>
+
+      <div class="savings-bar">
+        <div class="savings-amount" id="savings-amount">$0</div>
+        <div class="savings-label">saved per month</div>
+        <div class="savings-percent" id="savings-percent">0% less</div>
+      </div>
+
+      <div class="breakdown" id="breakdown"></div>
+    </div>
+
+    <div class="cta-section">
+      <h2>Want to see how it's built?</h2>
+      <p>I run 16 AI agents for $207/month. Weekly breakdowns of the architecture, costs, and code.</p>
+      <form class="subscribe-form" action="https://buttondown.com/api/emails/embed-subscribe/the200dollarceo" method="post" target="popupwindow">
+        <input type="email" name="email" placeholder="your@email.com" required>
+        <button type="submit">Get the build log</button>
+      </form>
+      <p class="trust-line">Free. Weekly. Unsubscribe anytime.</p>
+    </div>
+
+    <div class="data-source">
+      Based on real production data from <a href="https://buttondown.com/the200dollarceo" target="_blank">The $200/Month CEO</a> &mdash; a 16-agent system running since January 2026.<br>
+      Human salary data from Glassdoor US averages (2025). AI costs include compute, API, and infrastructure.
+    </div>
+  </div>
+
+  <script>
+    const ROLES = [
+      { id: 'researcher', name: 'Research Analyst', humanMonthly: 5500, aiMonthly: 15 },
+      { id: 'marketer', name: 'Marketing Manager', humanMonthly: 6200, aiMonthly: 18 },
+      { id: 'sales', name: 'Sales Development Rep', humanMonthly: 4800, aiMonthly: 14 },
+      { id: 'writer', name: 'Content Writer', humanMonthly: 4500, aiMonthly: 12 },
+      { id: 'analyst', name: 'Data/Finance Analyst', humanMonthly: 5800, aiMonthly: 16 },
+      { id: 'assistant', name: 'Executive Assistant', humanMonthly: 4200, aiMonthly: 10 },
+      { id: 'designer', name: 'Graphic Designer', humanMonthly: 4800, aiMonthly: 13 },
+      { id: 'developer', name: 'Junior Developer', humanMonthly: 5500, aiMonthly: 20 },
+      { id: 'support', name: 'Customer Support', humanMonthly: 3800, aiMonthly: 8 },
+      { id: 'pm', name: 'Project Manager', humanMonthly: 6500, aiMonthly: 14 },
+    ];
+
+    const selectedRoles = new Set();
+    const grid = document.getElementById('roles-grid');
+    const slider = document.getElementById('hours-slider');
+    const hoursValue = document.getElementById('hours-value');
+    const resultsEl = document.getElementById('results');
+    const emptyState = document.getElementById('empty-state');
+
+    // Build role cards using safe DOM methods
+    ROLES.forEach(function(role) {
+      var card = document.createElement('div');
+      card.className = 'role-card';
+      card.dataset.id = role.id;
+
+      var nameEl = document.createElement('div');
+      nameEl.className = 'role-name';
+      nameEl.textContent = role.name;
+
+      var costEl = document.createElement('div');
+      costEl.className = 'role-cost';
+      costEl.textContent = 'Human: $' + role.humanMonthly.toLocaleString() + '/mo (full-time)';
+
+      var aiCostEl = document.createElement('div');
+      aiCostEl.className = 'role-ai-cost';
+      aiCostEl.textContent = 'AI agent: $' + role.aiMonthly + '/mo';
+
+      card.appendChild(nameEl);
+      card.appendChild(costEl);
+      card.appendChild(aiCostEl);
+
+      card.addEventListener('click', function() {
+        if (selectedRoles.has(role.id)) {
+          selectedRoles.delete(role.id);
+          card.classList.remove('selected');
+        } else {
+          selectedRoles.add(role.id);
+          card.classList.add('selected');
+        }
+        updateResults();
+      });
+      grid.appendChild(card);
+    });
+
+    slider.addEventListener('input', function() {
+      hoursValue.textContent = slider.value + ' hrs/wk';
+      updateResults();
+    });
+
+    function updateResults() {
+      if (selectedRoles.size === 0) {
+        resultsEl.classList.remove('visible');
+        emptyState.style.display = 'block';
+        return;
+      }
+
+      emptyState.style.display = 'none';
+      resultsEl.classList.add('visible');
+
+      var hours = parseInt(slider.value);
+      var fteFraction = hours / 40;
+
+      var totalHuman = 0;
+      var totalAI = 0;
+      var breakdownEl = document.getElementById('breakdown');
+
+      // Clear breakdown using safe DOM method
+      while (breakdownEl.firstChild) {
+        breakdownEl.removeChild(breakdownEl.firstChild);
+      }
+
+      ROLES.filter(function(r) { return selectedRoles.has(r.id); }).forEach(function(role) {
+        var humanCost = Math.round(role.humanMonthly * fteFraction);
+        var aiCost = role.aiMonthly;
+        totalHuman += humanCost;
+        totalAI += aiCost;
+
+        var row = document.createElement('div');
+        row.className = 'breakdown-row';
+
+        var roleSpan = document.createElement('span');
+        roleSpan.className = 'breakdown-role';
+        roleSpan.textContent = role.name;
+
+        var costsDiv = document.createElement('div');
+        costsDiv.className = 'breakdown-costs';
+
+        var humanSpan = document.createElement('span');
+        humanSpan.className = 'breakdown-human';
+        humanSpan.textContent = '$' + humanCost.toLocaleString();
+
+        var aiSpan = document.createElement('span');
+        aiSpan.className = 'breakdown-ai';
+        aiSpan.textContent = '$' + aiCost;
+
+        costsDiv.appendChild(humanSpan);
+        costsDiv.appendChild(aiSpan);
+        row.appendChild(roleSpan);
+        row.appendChild(costsDiv);
+        breakdownEl.appendChild(row);
+      });
+
+      document.getElementById('human-cost').textContent = '$' + totalHuman.toLocaleString();
+      document.getElementById('ai-cost').textContent = '$' + totalAI.toLocaleString();
+
+      var savings = totalHuman - totalAI;
+      var percent = Math.round((savings / totalHuman) * 100);
+
+      document.getElementById('savings-amount').textContent = '$' + savings.toLocaleString();
+      document.getElementById('savings-percent').textContent = percent + '% less';
+    }
+  </script>
+</body>
+</html>
