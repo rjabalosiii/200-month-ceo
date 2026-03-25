@@ -326,7 +326,7 @@
       <div class="price-badge">DONE-FOR-YOU — $2,500 FLAT FEE</div>
       <h1>We Build Your <em>AI Agent Team</em> in 5 Days</h1>
       <p class="hero-sub">Stop hiring. We'll deploy a custom AI operations team for your business — configured, tested, and running on your infrastructure. $200/month ongoing cost instead of $5,000-$40,000 in salaries.</p>
-      <a href="mailto:rj@openclaw.com?subject=AI%20Ops%20Setup%20—%20Interested&body=Hi%20RJ%2C%0A%0AI'm%20interested%20in%20the%20AI%20Ops%20Setup%20service.%0A%0AMy%20business%3A%20%0ARoles%20I%20want%20to%20automate%3A%20%0ACurrent%20monthly%20spend%20on%20these%20roles%3A%20%0A%0AThanks!" class="cta-btn">Book a Setup Call</a>
+      <a href="#intake-form" class="cta-btn">Book a Setup Call</a>
       <p class="cta-note">Free 30-minute consultation. No commitment.</p>
     </div>
 
@@ -510,11 +510,44 @@
       </div>
     </div>
 
-    <div class="bottom-cta">
-      <h2>Replace $8,000/month in salaries with $200/month in AI agents.</h2>
-      <p>5-day setup. Custom agents. Your infrastructure. 2 weeks of support.</p>
-      <a href="mailto:rj@openclaw.com?subject=AI%20Ops%20Setup%20—%20Interested&body=Hi%20RJ%2C%0A%0AI'm%20interested%20in%20the%20AI%20Ops%20Setup%20service.%0A%0AMy%20business%3A%20%0ARoles%20I%20want%20to%20automate%3A%20%0ACurrent%20monthly%20spend%20on%20these%20roles%3A%20%0A%0AThanks!" class="cta-btn">Book a Setup Call — Free</a>
-      <p class="cta-note">30-minute consultation. We'll tell you exactly which roles to automate and the expected ROI.</p>
+    <div class="bottom-cta" id="intake-form">
+      <h2>Tell us about your business. We'll tell you what to automate.</h2>
+      <p>Free 30-minute consultation. We'll map your operations and show you which roles AI agents can handle — and what it'll save you.</p>
+      <form action="https://formsubmit.co/rj@openclaw.com" method="POST" style="text-align: left; max-width: 480px; margin: 0 auto;">
+        <input type="hidden" name="_subject" value="AI Ops Setup Lead from services page">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://200-month-ceo.vercel.app/services.html?thanks=1">
+        <input type="hidden" name="_template" value="table">
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 13px; color: #9ca3af; margin-bottom: 6px;">Your name</label>
+          <input type="text" name="name" required style="width: 100%; padding: 12px 16px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 15px; outline: none;" placeholder="Jane Smith">
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 13px; color: #9ca3af; margin-bottom: 6px;">Email</label>
+          <input type="email" name="email" required style="width: 100%; padding: 12px 16px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 15px; outline: none;" placeholder="jane@company.com">
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 13px; color: #9ca3af; margin-bottom: 6px;">What does your business do?</label>
+          <input type="text" name="business" required style="width: 100%; padding: 12px 16px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 15px; outline: none;" placeholder="E-commerce, agency, SaaS, consulting...">
+        </div>
+        <div style="margin-bottom: 16px;">
+          <label style="display: block; font-size: 13px; color: #9ca3af; margin-bottom: 6px;">What roles/tasks do you want to automate?</label>
+          <textarea name="roles_to_automate" rows="3" required style="width: 100%; padding: 12px 16px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 15px; outline: none; resize: vertical; font-family: inherit;" placeholder="Research, content, customer support, reporting, lead gen..."></textarea>
+        </div>
+        <div style="margin-bottom: 24px;">
+          <label style="display: block; font-size: 13px; color: #9ca3af; margin-bottom: 6px;">Current monthly spend on these roles (approx)</label>
+          <select name="monthly_spend" required style="width: 100%; padding: 12px 16px; background: #1a1a1a; border: 1px solid #333; border-radius: 8px; color: #fff; font-size: 15px; outline: none;">
+            <option value="" disabled selected>Select range</option>
+            <option value="under-1k">Under $1,000/mo</option>
+            <option value="1k-5k">$1,000 - $5,000/mo</option>
+            <option value="5k-15k">$5,000 - $15,000/mo</option>
+            <option value="15k-plus">$15,000+/mo</option>
+            <option value="not-yet-hiring">Not hiring yet (want to scale without hiring)</option>
+          </select>
+        </div>
+        <button type="submit" style="width: 100%; padding: 16px; background: linear-gradient(135deg, #10b981, #059669); color: #fff; font-size: 18px; font-weight: 800; border: none; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 24px rgba(16, 185, 129, 0.3); transition: transform 0.15s, box-shadow 0.15s;">Get Your Free AI Ops Assessment</button>
+        <p style="text-align: center; font-size: 12px; color: #6b7280; margin-top: 10px;">We'll reply within 24 hours with a custom automation plan for your business.</p>
+      </form>
     </div>
 
     <div style="text-align: center; margin: 32px 0; padding: 20px; background: #111; border-radius: 12px; border: 1px solid #222;">
@@ -526,7 +559,14 @@
       From <a href="index.html">The $200/Month CEO</a> — 6 months running 16 AI agents in production.
     </footer>
   </div>
-<script defer src="/_vercel/insights/script.js"></script>
-<script defer src="/_vercel/speed-insights/script.js"></script>
+
+  <script>
+    // Show thank you message if redirected back after form submit
+    if (window.location.search.includes('thanks=1')) {
+      var form = document.getElementById('intake-form');
+      form.innerHTML = '<h2 style="color: #34d399;">Got it! We\'ll be in touch within 24 hours.</h2><p style="color: #9ca3af; margin-top: 12px;">We\'re building your custom AI ops assessment right now. Check your email for next steps.</p><p style="margin-top: 20px;"><a href="calculator.html" style="color: #fbbf24; font-weight: 600; text-decoration: none;">While you wait: try our ROI Calculator →</a></p>';
+      form.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
