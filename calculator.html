@@ -716,17 +716,17 @@
       // Share text
       var roleNames = ROLES.filter(function(r) { return selectedRoles.has(r.id); }).map(function(r) { return r.name; });
       var roleList = roleNames.length <= 3 ? roleNames.join(', ') : roleNames.length + ' roles';
-      var shareText = 'Just calculated: replacing ' + roleList + ' with AI agents would save me $' + savings.toLocaleString() + '/month ($' + annualSavings.toLocaleString() + '/year).\n\nHuman cost: $' + totalHuman.toLocaleString() + '/mo\nAI agents: $' + totalAI.toLocaleString() + '/mo\nSavings: ' + percent + '%\n\nTry the free calculator: https://200-month-ceo.vercel.app/calculator.html';
+      var shareText = 'Just calculated: replacing ' + roleList + ' with AI agents would save me $' + savings.toLocaleString() + '/month ($' + annualSavings.toLocaleString() + '/year).\n\nHuman cost: $' + totalHuman.toLocaleString() + '/mo\nAI agents: $' + totalAI.toLocaleString() + '/mo\nSavings: ' + percent + '%\n\nTry the free calculator: https://rjabalosiii.github.io/200-month-ceo/calculator.html';
 
       document.getElementById('share-text').textContent = shareText;
       document.getElementById('share-section').classList.add('visible');
 
       // Share links
       var tweetText = encodeURIComponent('Replacing ' + roleList + ' with AI agents = $' + savings.toLocaleString() + '/mo savings (' + percent + '% less).\n\nFree calculator:');
-      var tweetUrl = encodeURIComponent('https://200-month-ceo.vercel.app/calculator.html');
+      var tweetUrl = encodeURIComponent('https://rjabalosiii.github.io/200-month-ceo/calculator.html');
       document.getElementById('twitter-share').href = 'https://twitter.com/intent/tweet?text=' + tweetText + '&url=' + tweetUrl;
 
-      var linkedinUrl = encodeURIComponent('https://200-month-ceo.vercel.app/calculator.html');
+      var linkedinUrl = encodeURIComponent('https://rjabalosiii.github.io/200-month-ceo/calculator.html');
       document.getElementById('linkedin-share').href = 'https://www.linkedin.com/sharing/share-offsite/?url=' + linkedinUrl;
 
       // Show dynamic service CTA with personalized ROI
