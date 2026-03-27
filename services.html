@@ -303,13 +303,108 @@
     }
     footer a { color: #60a5fa; text-decoration: none; }
 
+    /* Sticky CTA bar */
+    .sticky-cta {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10, 10, 10, 0.95);
+      backdrop-filter: blur(12px);
+      border-top: 1px solid #222;
+      padding: 12px 24px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 16px;
+      z-index: 100;
+      transform: translateY(100%);
+      transition: transform 0.3s ease;
+    }
+    .sticky-cta.visible { transform: translateY(0); }
+    .sticky-cta .sticky-text {
+      font-size: 14px;
+      color: #9ca3af;
+    }
+    .sticky-cta .sticky-text strong {
+      color: #34d399;
+    }
+    .sticky-cta .cta-btn {
+      padding: 10px 24px;
+      font-size: 14px;
+    }
+
+    /* Social proof */
+    .proof-section {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 16px;
+      padding: 32px 24px;
+      margin-bottom: 48px;
+    }
+    .proof-section h2 { margin-bottom: 8px; }
+    .proof-section .proof-subtitle {
+      color: #9ca3af;
+      font-size: 15px;
+      margin-bottom: 24px;
+    }
+    .proof-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .proof-stat {
+      text-align: center;
+    }
+    .proof-stat .stat-num {
+      font-size: 28px;
+      font-weight: 800;
+      color: #34d399;
+      line-height: 1;
+    }
+    .proof-stat .stat-label {
+      font-size: 12px;
+      color: #6b7280;
+      margin-top: 4px;
+    }
+    .proof-quote {
+      font-style: italic;
+      color: #d1d5db;
+      font-size: 15px;
+      border-left: 3px solid #34d399;
+      padding-left: 16px;
+      margin-top: 20px;
+    }
+    .proof-quote .attribution {
+      font-style: normal;
+      font-size: 13px;
+      color: #6b7280;
+      margin-top: 8px;
+    }
+
+    /* Urgency badge */
+    .urgency-bar {
+      text-align: center;
+      padding: 10px 16px;
+      background: rgba(251, 191, 36, 0.08);
+      border: 1px solid rgba(251, 191, 36, 0.2);
+      border-radius: 8px;
+      font-size: 13px;
+      color: #fbbf24;
+      margin-bottom: 32px;
+    }
+
     @media (max-width: 600px) {
       h1 { font-size: 28px; }
-      .container { padding: 32px 16px; }
+      .container { padding: 32px 16px 80px; }
       .cost-compare { grid-template-columns: 1fr; gap: 8px; }
       .cost-vs { display: none; }
       .timeline-item { flex-direction: column; }
       .timeline-day { width: 100%; height: auto; padding: 12px; flex-direction: row; gap: 8px; }
+      .proof-stats { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+      .proof-stat .stat-num { font-size: 22px; }
+      .sticky-cta .sticky-text { display: none; }
     }
   </style>
 </head>
@@ -326,8 +421,12 @@
       <div class="price-badge">DONE-FOR-YOU — $2,500 FLAT FEE</div>
       <h1>We Build Your <em>AI Agent Team</em> in 5 Days</h1>
       <p class="hero-sub">Stop hiring. We'll deploy a custom AI operations team for your business — configured, tested, and running on your infrastructure. $200/month ongoing cost instead of $5,000-$40,000 in salaries.</p>
-      <a href="#intake-form" class="cta-btn">Book a Setup Call</a>
-      <p class="cta-note">Free 30-minute consultation. No commitment.</p>
+      <a href="#intake-form" class="cta-btn">Get Your Free AI Ops Assessment</a>
+      <p class="cta-note">Free 30-minute consultation. No commitment required.</p>
+    </div>
+
+    <div class="urgency-bar">
+      We take on <strong>3 setup clients per month</strong> to ensure quality. Currently booking for April 2026.
     </div>
 
     <div class="cost-compare">
@@ -341,6 +440,29 @@
         <div class="label">AI agent team</div>
         <div class="amount new">~$200</div>
         <div class="period">per month (after setup)</div>
+      </div>
+    </div>
+
+    <div class="proof-section">
+      <h2>We run this system ourselves — every day</h2>
+      <p class="proof-subtitle">This isn't a theory. We've been running AI agents as our actual business team for 7+ months.</p>
+      <div class="proof-stats">
+        <div class="proof-stat">
+          <div class="stat-num">16</div>
+          <div class="stat-label">AI agents in production</div>
+        </div>
+        <div class="proof-stat">
+          <div class="stat-num">~$200</div>
+          <div class="stat-label">monthly operating cost</div>
+        </div>
+        <div class="proof-stat">
+          <div class="stat-num">7+</div>
+          <div class="stat-label">months running 24/7</div>
+        </div>
+      </div>
+      <div class="proof-quote">
+        "Our AI agents handle research, content, outreach, financial analysis, sales intel, and internal ops. A human team doing the same work would cost $15K-$40K/month. Our API bill is under $200."
+        <div class="attribution">— RJ Abalos, Founder. Running 16 AI agents from a Mac Mini in Manila.</div>
       </div>
     </div>
 
@@ -511,8 +633,8 @@
     </div>
 
     <div class="bottom-cta" id="intake-form">
-      <h2>Tell us about your business. We'll tell you what to automate.</h2>
-      <p>Free 30-minute consultation. We'll map your operations and show you which roles AI agents can handle — and what it'll save you.</p>
+      <h2>Get your free AI operations assessment</h2>
+      <p>Tell us about your business. Within 24 hours, we'll send you a custom report showing exactly which roles to automate, projected monthly savings, and a recommended agent architecture — whether you hire us or not.</p>
       <form action="https://formsubmit.co/rj@openclaw.com" method="POST" style="text-align: left; max-width: 480px; margin: 0 auto;">
         <input type="hidden" name="_subject" value="AI Ops Setup Lead from services page">
         <input type="hidden" name="_captcha" value="false">
@@ -560,7 +682,29 @@
     </footer>
   </div>
 
+  <!-- Sticky CTA bar -->
+  <div class="sticky-cta" id="stickyCta">
+    <span class="sticky-text"><strong>$2,500</strong> — Your AI team, live in 5 days</span>
+    <a href="#intake-form" class="cta-btn">Get Free Assessment</a>
+  </div>
+
   <script>
+    // Sticky CTA: show after scrolling past hero
+    (function() {
+      var sticky = document.getElementById('stickyCta');
+      var hero = document.querySelector('.hero');
+      var form = document.getElementById('intake-form');
+      window.addEventListener('scroll', function() {
+        var heroBottom = hero.getBoundingClientRect().bottom;
+        var formTop = form.getBoundingClientRect().top;
+        if (heroBottom < 0 && formTop > window.innerHeight) {
+          sticky.classList.add('visible');
+        } else {
+          sticky.classList.remove('visible');
+        }
+      });
+    })();
+
     // Show thank you message if redirected back after form submit
     if (window.location.search.includes('thanks=1')) {
       var form = document.getElementById('intake-form');
